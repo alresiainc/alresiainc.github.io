@@ -10,7 +10,15 @@ body {
     font-family: "Open Sans", sans-serif;
     color: #272829;
 }
+::-moz-selection { /* Code for Firefox */
+  color: #f2f3f5;
+  background: #06C7F2;
+}
 
+::selection {
+  color: #f2f3f5;
+  background: #06C7F2;
+}
 a {
     color: #06C7F2;
     text-decoration: none;
@@ -279,10 +287,10 @@ h6 {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url("../img/hero-bg.jpg") top right no-repeat;
+    background: url("../img/website-banner.png") top right no-repeat;
     background-size: cover;
     position: relative;
-    background-image: url('../../../../Documents/Graphics/Alresia%20Banner-1.jpg');
+    /* background-image: url('../img/website-banner'); */
 }
 
 #hero:before {
