@@ -331,12 +331,12 @@ h6 {
     font-size: 64px;
     font-weight: 700;
     line-height: 56px;
-
-    /* background-clip: text;
+    background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
-    /* background-image: linear-gradient(179deg, rgb(35, 108, 192) 0%, rgb(6, 199, 242) 16%, rgb(6, 199, 242) 61%, rgb(33, 105, 189) 95%); */
-    color: #06C7F2;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(179deg, rgb(35, 108, 192) 0%, rgb(6, 199, 242) 16%, rgb(6, 199, 242) 61%, rgb(33, 105, 189) 95%);
+
+    /* color: #45505b; */
 }
 
 #hero p {
