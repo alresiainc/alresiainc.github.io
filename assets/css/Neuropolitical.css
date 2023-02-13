@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Neuropolitical';
+    src: url('../fonts/neuropolitical-rg.eot');
+    src: url('../fonts/neuropolitical-rg.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/neuropolitical-rg.woff2') format('woff2'),
+         url('../fonts/neuropolitical-rg.woff') format('woff'),
+         url('../fonts/neuropolitical-rg.ttf')  format('truetype'),
+         url('../fonts/neuropolitical-rg.svg#Neuropolitical') format('svg');
+}
