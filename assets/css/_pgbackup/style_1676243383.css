@@ -285,9 +285,15 @@ h6 {
     background-image: url('../../../../Documents/Graphics/Alresia%20Banner-1.jpg');
 }
 
+@media (min-width: 992px) {
+    #hero {
+        padding-left: 160px;
+    }
+}
+
 #hero:before {
     content: "";
-    background: #ffffff71;
+    background: rgba(255, 255, 255, 0.8);
     position: absolute;
     bottom: 0;
     top: 0;
@@ -295,36 +301,12 @@ h6 {
     right: 0;
 }
 
-@media (min-width: 992px) {
-    #hero {
-        padding-left: 160px;
-    }
-}
-
-@media (max-width:768px) {
-    #hero:before {
-        content: "";
-        background: #ffffff;
-        position: absolute;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-}
-
 #hero h1 {
     margin: 0;
     font-size: 64px;
     font-weight: 700;
     line-height: 56px;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(179deg, rgb(35, 108, 192) 0%, rgb(6, 199, 242) 16%, rgb(6, 199, 242) 61%, rgb(33, 105, 189) 95%);
-
-    /* color: #45505b; */
-    font-family: 'Neuropolitical';
+    color: #45505b;
 }
 
 #hero p {
@@ -362,9 +344,8 @@ h6 {
     }
 
     #hero h1 {
-        font-size: 80px;
-        line-height: 63px;
-        font-family: 'Bebas Neue', cursive;
+        font-size: 32px;
+        line-height: 36px;
     }
 
     #hero p {
@@ -390,7 +371,6 @@ section {
 .section-title h2 {
     font-size: 32px;
     font-weight: bold;
-    font-family: 'Neuropolitical';
     text-transform: uppercase;
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -1199,17 +1179,9 @@ section {
     font-size: 36px;
     font-weight: 700;
     position: relative;
-
-    /* font-family: "Poppins", sans-serif; */
-    font-family: 'Neuropolitical';
+    font-family: "Poppins", sans-serif;
     padding: 0;
     margin: 0 0 15px 0;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(179deg, rgb(37, 97, 164) 4%, rgb(6, 199, 242) 44%, rgb(37, 97, 164) 95%);
-
-    /* color: linear-gradient(310deg,#7928ca,#ff0080);; */
 }
 
 #footer p {
