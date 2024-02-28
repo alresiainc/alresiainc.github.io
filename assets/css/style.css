@@ -532,6 +532,7 @@ h6 {
   align-items: center;
   justify-content: center;
   list-style: none;
+  padding: 0px;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
