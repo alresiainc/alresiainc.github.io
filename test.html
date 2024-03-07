@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Layout Picker</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .portfolio-preview {
+            max-width: 300px !important;
+            max-height: 300px !important;
+
+        }
+
+        .div-class-name {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bxl-col img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .portfolio-preview .bxl-row {
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+
+        .portfolio-preview .bxl-col {
+            padding: 0px !important;
+            margin: 0px !important;
+            border: 1px solid transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Random Layout Picker</h1>
+    <label for="numItemsInput">Enter the number of items:</label>
+    <input type="text" id="numItemsInput">
+    <button onclick="pickRandomLayout()">Pick Random Layout</button>
+
+    <br><br>
+
+    <label for="randomLayoutInput">Randomly picked layout:</label>
+    <input type="text" id="randomLayoutInput" readonly>
+
+    <div class="container">
+        <div class="portfolio-preview my-5">
+            <!-- Generated HTML will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        class BoxLayout {
+            constructor(selector, options = { header, fullScreenButton, pagination }) {
+                this.pluginName = "BoxLayout";
+                this.pluginShortName = "Bxl";
+                this.selector = selector;
+                this.layout = options?.data?.layout;
+                this.data = options?.data || { items: ["https://via.placeholder.com/400"] };
+                this.maxShow = options?.maxShow || 5;
+                this.itemIndex = 0;
+                this.showed = 0;
+                this.customLayout = {
+                    1: ["col-12"],
+                    2: ["col-12:col-12", "col-6:col-6"],
+                    3: [
+                        "col-6:col-6<col-12:col-12>",
+                        "col-12<col-6:col-6>:col-12",
+                        "col-6<col-12:col-12>:col-6",
+                        "col-4:col-4:col-4",
+                    ],
+                    4: [
+                        "col-6:col-6:col-6:col-6",
+                        "col-6:col-6<col-12:col-12:col-12>",
+                        "col-12:col-4:col-4:col-4",
+                    ],
+                    5: [
+                        "col-6:col-6:col-4:col-4:col-4",
+                        "col-6<col-12:col-12>:col-6<col-11:col-12:col-12>",
+                        "col-6<col-12:col-12:col-12>:col-6<col-12:col-12>",
+                        "col-8:col-4:col-4:col-4:col-4",
+                    ],
+                };
+
+                this.init();
+            }
+
+            createName(str) {
+                return `${this.pluginShortName.replace(/\s+/g, "-").toLowerCase()} -${str}`;
+            }
+            getWidth(col) {
+                return (col / 12) * 100;
+            }
+
+            customSplit(text) {
+                let parts = [];
+                let temp = "";
+                let withinAngleBrackets = 0;
+
+                for (let char of text) {
+                    if (char === "<") {
+                        withinAngleBrackets++;
+                    } else if (char === ">") {
+                        withinAngleBrackets--;
+                    }
+
+                    if (char === ":" && withinAngleBrackets === 0) {
+                        parts.push(temp);
+                        temp = "";
+                    } else {
+                        temp += char;
+                    }
+                }
+
+                if (temp !== "") {
+                    parts.push(temp);
+                }
+
+                return parts;
+            }
+
+            generateHTML(layout) {
+                let display;
+                let showed = this.showed;
+                let itemIndex = this.itemIndex;
+                let items = this.data.items;
+                console.log(layout);
+                const cols = this.customSplit(layout);
+                let html;
+                html = `<div style="display: flex;flex-wrap: wrap;width: 100%;height: 100%;" class="${this.createName(
+                    "row"
+                )}">`;
+
+                cols.forEach((col) => {
+                    showed++;
+                    this.showed = showed;
+                    console.log(this.showed);
+                    if (showed <= this.maxShow) {
+                        display = "";
+                    } else {
+                        display = "display:none;";
+                    }
+                    if (col.includes("<")) {
+                        // Column contains nested rows
+                        let colNum = col.split("<")[0];
+                        colNum = colNum.split("-")[1];
+
+                        html += `<div style="flex-shrink: 0;max-width: 100%;flex: 0 0 auto;width:${this.getWidth(
+                            colNum
+                        )}%;" class="${this.createName("col")}">`;
+                        // Column contains content
+
+                        html += `<!-- Content for column: ${colNum} -->`;
+                        let startIndex = col.indexOf("<") + 1;
+                        let lastIndex = col.indexOf(">");
+                        let subCol = col.substring(startIndex, lastIndex);
+
+                        console.log("start:");
+                        console.log(itemIndex);
+                        html += this.generateHTML(subCol);
+                        console.log("end:");
+                        console.log(itemIndex);
+                        html += `<!--End content for column: ${colNum} -->`;
+                        html += "</div>"; // Close column
+                    } else {
+                        let colNum = col.split("-")[1];
+                        html += `<div style="flex-shrink: 0;max-width: 100%;flex: 0 0 auto;width:${this.getWidth(colNum)}%;" class="${this.createName("col")}">`;
+                        // Column contains content
+                        html += `<!--Content for column: ${colNum} -->`;
+                        html += `<div class="div-class-name  w-100 h-100" style="position:relative; height:100%; width:100%;">`;
+                        html += `<img src="${items[itemIndex]}" alt="item-${itemIndex}" class="img-class-name" />`;
+
+                        if (itemIndex + 1 == this.maxShow && items.length - this.maxShow > 0) {
+
+                            alert(`<div>${items.length - this.maxShow}</div>`);
+                            html += `<div style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex;align-items:center;justify-content:center; "><span style=" border-color:white;color:white;">+${items.length - this.maxShow}</span></div>`;
+                        }
+                        html += `</div>`;
+
+                        html += `<!--End content for column: ${colNum} -->`;
+                        html += "</div>"; // Close column
+                    }
+                    itemIndex++;
+                    this.itemIndex = itemIndex;
+                });
+
+                if (items[itemIndex] && this.maxShow < items.length) {
+
+                    let colNum = "12";
+                    html += `<div style="display:none;flex-shrink: 0;max-width: 100%;flex: 0 0 auto;width:${this.getWidth(
+                        colNum
+                    )}%;" class="${this.createName("col")}">`;
+                    // Column contains content
+                    html += `<!--Content for column: ${colNum} -->`;
+                    html += `<div class="div-class-name  w-100 h-100">`;
+                    html += `<img src="${items[itemIndex]}" alt="item-${itemIndex}" class="img-class-name" />`;
+                    html += `</div>`;
+
+                    html += `<!--End content for column: ${colNum} -->`;
+                    html += "</div>"; // Close column
+                }
+
+                html += "</div>"; // Close row
+
+                return html;
+            }
+
+            init() {
+                let items = this.data.items;
+                // Get the number of items
+                let numItems = parseInt(items.length > this.maxShow ? this.maxShow : items.length);
+
+                // Get the layout options for the given number of items
+                let layouts = this.customLayout[numItems.toString()];
+                console.log(layouts);
+
+                let layout;
+
+                // Check if layout options exist for the given number of items
+                if (this.layout) {
+                    layout = this.layout;
+                } else {
+                    if (layouts && layouts.length > 0) {
+                        // Pick a random layout from the options
+                        let randomIndex = Math.floor(Math.random() * layouts.length);
+                        layout = layouts[randomIndex];
+                    } else {
+                        layout = "col-12";
+                    }
+                }
+
+                console.log(layout);
+
+                let generatedHTML = this.generateHTML(layout);
+                document.querySelector(this.selector).innerHTML = generatedHTML;
+            }
+        }
+        function pickRandomLayout() {
+
+            let numItemsInput = document.querySelector("#numItemsInput");
+            let items = numItemsInput.value.split(',');
+            console.log(items);
+
+            new BoxLayout(".portfolio-preview", {
+                data: {
+                    type: 'image',
+                    items: items,
+                }
+            });
+        }
+
+    </script>
+    <div>
+        Uncaught TypeError: text is not iterable
+        at BoxLayout.customSplit (test.html:109:34)
+        at BoxLayout.generateHTML (test.html:139:35)
+        at test.html:167:38
+        at Array.forEach (<anonymous>)
+            at BoxLayout.generateHTML (test.html:145:22)
+            at BoxLayout.init (test.html:219:42)
+            at new BoxLayout (test.html:92:22)
+            at pickRandomLayout (test.html:233:13)
+            at HTMLButtonElement.onclick (test.html:44:42)
+    </div>
+</body>
+
+</html>

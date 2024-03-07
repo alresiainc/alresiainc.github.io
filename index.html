@@ -30,6 +30,36 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap">
     <style>
+        .portfolio-preview {
+            padding: 20px 20px 20px 20px;
+            border: 1px solid #dddddd;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.02);
+            margin-bottom: 30px;
+        }
+
+        .slider-items {
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .slider-info {
+            background-color: #f2f3f5;
+            margin-top: 3px;
+        }
+
+        .slider-info span {
+            font-size: 20px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .slider-items .bxl-row {
+            max-height: 200px;
+            overflow: hidden;
+        }
+
+
+
         .innovative-text {
             background-image: linear-gradient(-225deg,
                     rgb(95 45 237) 0%,
@@ -168,6 +198,48 @@
                 transform: translateX(-50%);
             }
         }
+
+        .shapes {
+            position: absolute;
+            background: rgb(0 0 255 / 20%);
+            top: 17%;
+            right: 0;
+            height: 600px;
+            width: 600px;
+        }
+
+
+
+        .shape {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            right: 0;
+            border-style: dashed;
+            border-width: 5px;
+            border-color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            -webkit-animation: shape-rotation 125s linear infinite;
+            animation: shape-rotation 125s linear infinite;
+        }
+
+        .shape * {
+            animation-play-state: paused;
+        }
+
+
+        @keyframes shape-rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -205,6 +277,32 @@
     <!-- End Header -->
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex flex-column justify-content-center">
+        <div class="shapes d-none">
+            <div class="shape" style="border-color: #9ee7ff;animation-duration: 200s;">
+                <div class="shape"
+                    style="animation-duration: 50s;width: calc(100% - 15px); height: calc(100% - 15px);border: 3px solid transparent;border-top-color: #fff;border-left-color: #fff;">
+                    <div class="shape" style="width: calc(100% - 50px); height: calc(100% - 50px);
+    border: 20px solid transparent;
+    border-top-color: #277af6;
+    border-bottom-color: #277af6;
+    border-style: dashed;">
+                        <div class="shape" style="animation-duration: 350s;width: calc(100% + 10px); height: calc(100% + 10px);
+    border: 4px solid white;">
+                            <div class="shape" style="height: calc(100% - 50px); width: calc(100% - 50px);
+    border: 50px solid #277af6; 
+    border-style: dashed;">
+                                <div class="shape" style="height: calc(100% - 50px); width: calc(100% - 50px);
+    border: 5px solid transparent;border-bottom-color: #277af6;animation-duration: 150s;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape-3"></div>
+        </div>
         <div class="container" data-aos="zoom-in" data-aos-delay="100">
             <div class="company-details text-center">
                 <h1>
@@ -755,164 +853,18 @@
         </section>
         <!-- End Services Section -->
         <!-- ======= Portfolio Section ======= -->
-        <!-- <section id="portfolio" class="portfolio section-bg">
+        <section id="portfolio" class="portfolio section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
-                    <h2>Portfolio</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
-                        </ul>
+                    <h2>Our Portfolio</h2>
+                    <div class="portfolio-preview">
+
                     </div>
                 </div>
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>App</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-1.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-2.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 2</h4>
-                                <p>App</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-3.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Card 2</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-4.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Web 2</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-5.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>App 3</h4>
-                                <p>App</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-6.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Card 1</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-7.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Card 3</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-8.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links"> <a href="assets/img/portfolio/portfolio-9.jpg"
-                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i
-                                            class="bx bx-plus"></i></a> <a href="portfolio-details.html"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
-        </section> -->
-        <!-- End Portfolio Section -->
+        </section>
+        <!-- End Portfolio Section  -->
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
@@ -1035,9 +987,19 @@
 
         </div>
     </footer>
+    <div class="bottom-section">
+        <ul>
+            <li><a href="mailto:info@alresia.com" class="button email"><i class="bx bx-mail-send mr-2"></i><span>Send
+                        Email</span></a></li>
+            <li> <a href="whatsapp:+2347050443290" class="button whatsapp"><i
+                        class="bx bxl-whatsapp mr-2"></i><span>WhatsApp</span></a></li>
+            <li class="back-to-top-container"><a href="#" class="button back-to-top"><i
+                        class="bi bi-arrow-up-short"></i></a></li>
+        </ul>
+
+    </div>
     <!-- End Footer -->
-    <div id="preloader"></div> <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -1049,15 +1011,93 @@
     <script src="assets/vendor/select2/js/select2.min.js"></script>
     <script src="assets/vendor/typed.js/typed.min.js"></script>
     <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/js/box-layout.js"></script>
     <!-- Template Main JS File -->
+
     <script src="assets/js/main.js"></script>
-    <!-- <script>
-        $(function () {
-            //Add text editor
-            $('.select2').select2();
+    <!-- <script src="assets/js/test.js"></script> -->
+    <script>
+
+        let data = [
+            {
+                type: "web development",
+                id: "1",
+                items: [
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_20.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_19.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_7.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
+                ],
+            },
+            {
+                type: "web development",
+                id: "3",
+                items: [
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/about/tution.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_26.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_27.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_28.jpg",
+                ],
+            },
+            {
+                type: "app development",
+                id: "4",
+                items: [
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_26.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_27.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_28.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_20.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_19.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_7.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/about/tution.jpg",
+                ],
+            },
+            {
+                type: "web development",
+                id: "1",
+                items: [
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/about/tution.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_26.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_27.jpg",
+                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_28.jpg",
+                ],
+            },
+        ];
+        const slidersContainer = document.createElement("div");
+        slidersContainer.className = "sliders-container row";
+
+        data.forEach((item) => {
+            let items = item.items;
+
+            const slidersItem = document.createElement("div");
+            slidersItem.className = "slider-items col-sm-6 col-lg-3";
+            let box_layout = new BoxLayout(slidersItem, {
+                data: item
+            });
+            const sliderInfo = document.createElement("div");
+            sliderInfo.className = "slider-info";
+            sliderInfo.innerHTML = `<span>${item.type}</span>`;
+            slidersItem.appendChild(sliderInfo);
+            slidersContainer.appendChild(slidersItem);
 
         });
-    </script> -->
+
+        console.log(slidersContainer);
+
+        document.querySelector(".portfolio-preview").appendChild(slidersContainer);
+
+
+
+
+    </script>
+
 </body>
 
 </html>

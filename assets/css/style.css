@@ -1,8 +1,10 @@
-/* *
-* Template Name: MyResume - v4.10.0
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/ */
+:root {
+  --primaryColor: #5f2ded;
+  --primaryColorRGB: "95, 45, 237";
+  --secondaryColor: #00c4cc;
+  --secondaryColorRGB: "0, 196, 204";
+}
+
 /* --------------------------------------------------------------
 # General
 -------------------------------------------------------------- */
@@ -18,16 +20,16 @@ body {
 ::-moz-selection {
   /* Code for Firefox */
   color: #f2f3f5;
-  background: #5f2ded;
+  background: var(--primaryColor);
 }
 
 ::selection {
   color: #f2f3f5;
-  background: #5f2ded;
+  background: var(--primaryColor);
 }
 
 a {
-  color: #5f2ded;
+  color: var(--primaryColor);
   text-decoration: none;
 }
 
@@ -43,39 +45,6 @@ h4,
 h5,
 h6 {
   font-family: "Raleway", sans-serif;
-}
-
-/* --------------------------------------------------------------
-# Back to top button
--------------------------------------------------------------- */
-.back-to-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 996;
-  background: #5f2ded;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  transition: all 0.4s;
-}
-
-.back-to-top i {
-  font-size: 28px;
-  color: #fff;
-  line-height: 0;
-}
-
-.back-to-top:hover {
-  background: #0678e3;
-  color: #fff;
-}
-
-.back-to-top.active {
-  visibility: visible;
-  opacity: 1;
 }
 
 /* --------------------------------------------------------------
@@ -97,7 +66,7 @@ h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #5f2ded;
+  border: 6px solid var(--primaryColor);
   border-top-color: #fff;
   border-bottom-color: #fff;
   border-radius: 50%;
@@ -175,6 +144,18 @@ h6 {
   display: block;
 }
 
+.nav-menu::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  max-width: 86px;
+  border: 3px solid #f2f3f5;
+  border-left: unset;
+}
+
 .nav-menu * {
   margin: 0;
   padding: 0;
@@ -195,12 +176,42 @@ h6 {
   margin-bottom: 8px;
   transition: 0.3s;
   font-size: 15px;
-  border-radius: 50px;
+  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   background: #f2f3f5;
   height: 56px;
   width: 100%;
   overflow: hidden;
   transition: 0.3s;
+}
+
+.nav-menu a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 26px;
+  width: calc(50% + 15px);
+  max-width: 43px;
+  border: 1px solid #f2f3f5;
+  z-index: -1;
+}
+
+/* .navbar a::after {
+  content: "";
+  position: absolute;
+  top: 44%;
+  left: 65px;
+  width: 2px;
+  height: 2px;
+  max-width: 43px;
+  border: 5px solid #f2f3f5;
+  border-radius: 50%;
+  z-index: -1;
+} */
+
+.nav-menu a.active::before {
+  border: 1px solid var(--primaryColor);
 }
 
 .nav-menu a i,
@@ -233,8 +244,13 @@ h6 {
 .nav-menu li:hover > a {
   color: #fff;
   background: rgba(0, 0, 0, 0.1)
-    linear-gradient(45deg, rgb(43 0 166) 0%, rgb(95 45 237) 100%) repeat scroll
-    0% 0%;
+    linear-gradient(90deg, var(--secondaryColor) 0%, var(--primaryColor) 100%)
+    repeat scroll 0% 0%;
+}
+
+.nav-menu li:hover > a {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .nav-menu a:hover span,
@@ -292,7 +308,7 @@ h6 {
 
 .mobile-nav-active .mobile-nav-toggle {
   color: #fff;
-  background-color: #5f2ded;
+  background-color: var(--primaryColor);
 }
 
 /* --------------------------------------------------------------
@@ -356,7 +372,7 @@ h6 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
   /* background-image: linear-gradient(179deg, rgb(35, 108, 192) 0%, rgb(6, 199, 242) 16%, rgb(6, 199, 242) 61%, rgb(33, 105, 189) 95%); */
-  color: #5f2ded;
+  color: var(--primaryColor);
 }
 
 #hero p {
@@ -367,7 +383,7 @@ h6 {
 }
 
 #hero p span {
-  color: #5f2ded;
+  color: var(--primaryColor);
   letter-spacing: 1px;
 }
 
@@ -385,7 +401,7 @@ h6 {
 }
 
 #hero .social-links a:hover {
-  color: #5f2ded;
+  color: var(--primaryColor);
 }
 
 @media (max-width: 992px) {
@@ -430,7 +446,7 @@ h6 {
 
 .search-form input:focus-visible {
   border: none;
-  outline: #5f2ded auto 0.5px;
+  outline: var(--primaryColor) auto 0.5px;
   box-shadow: 0 0 50px 3px rgb(43 0 166);
   transition: 0.5s;
 }
@@ -571,7 +587,7 @@ section {
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  color: #5f2ded;
+  color: var(--primaryColor);
 }
 
 .section-title h2::before {
@@ -591,7 +607,7 @@ section {
   display: block;
   width: 40px;
   height: 3px;
-  background: #5f2ded;
+  background: var(--primaryColor);
   bottom: 0;
   left: calc(50% - 20px);
 }
@@ -602,22 +618,171 @@ section {
 
 .default-button {
   padding: 10px 25px;
-  background-color: #5f2ded;
-  background: #5f2ded;
+  background-color: var(--primaryColor);
+  background: var(--primaryColor);
   display: inline-block;
   text-align: center;
   font-size: 15px;
   border-radius: 50px;
-  border: 1px solid #5f2ded;
+  border: 1px solid var(--primaryColor);
   color: #ffffff;
   transition: 0.3s;
 }
 
 .default-button:hover {
-  background-color: #5f2ded;
+  background-color: var(--primaryColor);
   background: rgba(0, 0, 0, 0.1)
-    linear-gradient(45deg, #5f2ded 50%, #2b00a6 100%) repeat scroll 0% 0%;
+    linear-gradient(90deg, var(--secondaryColor) 0%, var(--primaryColor) 100%)
+    repeat scroll 0% 0%;
   color: #ffffff;
+  border-color: transparent;
+  transition: 0.3s;
+}
+
+/* --------------------------------------------------------------
+# Bottom Section
+-------------------------------------------------------------- */
+
+.bottom-section {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  width: fit-content;
+  overflow: hidden;
+  transition: width 0.5s height 0.5s;
+  transition: 0.5s;
+}
+
+.bottom-section ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-section ul li :not(.back-to-top-container) {
+  transition: 0.3s ease;
+}
+
+.bottom-section .button {
+  font-size: 15px;
+  color: #ffffff;
+  border: 0px;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  margin-right: 7px !important;
+}
+
+@media (max-width: 575.98px) {
+  .bottom-section > ul {
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .bottom-section li > .button {
+    margin-bottom: 7px !important;
+    transition: 0.3s;
+  }
+  .bottom-section li:not(:hover) > .button span {
+    display: none !important;
+    transition: 0.3s;
+  }
+
+  .bottom-section li:not(:hover) > .button {
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+  }
+
+  .bottom-section li:not(:hover) .button.email,
+  .bottom-section li:not(:hover) .button.whatsapp {
+    padding: unset !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.bottom-section .button i {
+  font-size: 20px;
+}
+
+.bottom-section .button.email {
+  background-color: #ffffff;
+  color: var(--primaryColor);
+  border: 2px solid var(--primaryColor);
+  padding: 6px 25px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-section .button.whatsapp {
+  background-color: #ffffff;
+  color: #18d26e;
+  border: 2px solid #18d26e;
+  padding: 6px 25px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-section .button.email:hover {
+  background-color: var(--primaryColor);
+  color: #ffffff;
+}
+
+.bottom-section .button.whatsapp:hover {
+  background-color: #18d26e;
+  color: #ffffff;
+}
+
+/* .bottom-section :nth-child(1) {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.bottom-section :nth-last-child(1) {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+} */
+
+.back-to-top-container {
+  max-height: 0px;
+  max-width: 0px;
+  transition: 0.3s ease;
+  transition: max-height 0.3s ease max-width 0.3s ease;
+}
+
+.back-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: var(--primaryColor);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.3s;
+  border: 2px solid var(--primaryColor);
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #0678e3;
+  color: #fff;
+}
+
+.back-to-top-container.active {
+  max-height: unset;
+  max-width: unset;
+  transition: 0.3s;
 }
 /* --------------------------------------------------------------
 # About-us
@@ -632,14 +797,14 @@ section {
 
 .about-us .content.quote {
   margin-bottom: 40px;
-  border-left: 3px solid #5f2ded;
+  border-left: 3px solid var(--primaryColor);
   padding-left: 10px;
 }
 
 .about-us .explore-more {
-  background: #5f2ded;
+  background: var(--primaryColor);
   color: #ffffff;
-  border: 1px solid #5f2ded;
+  border: 1px solid var(--primaryColor);
   display: inline-block;
   text-align: center;
   border-radius: 4px;
@@ -671,7 +836,7 @@ section {
 .about-us .content ul i {
   font-size: 16px;
   margin-right: 5px;
-  color: #5f2ded;
+  color: var(--primaryColor);
   line-height: 0;
 }
 
@@ -690,7 +855,7 @@ section {
 .about-us .about-us-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
-  border-left: 2px solid #5f2ded;
+  border-left: 2px solid var(--primaryColor);
   position: relative;
 }
 
@@ -700,7 +865,7 @@ section {
   font-weight: 600;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  color: #5f2ded;
+  color: var(--primaryColor);
   margin-bottom: 10px;
 }
 
@@ -734,13 +899,13 @@ section {
   left: -9px;
   top: 0;
   background: #fff;
-  border: 2px solid #5f2ded;
+  border: 2px solid var(--primaryColor);
 }
 
 .about-us .item {
-  --itemColor: #5f2ded;
+  --itemColor: var(--primaryColor);
   padding: 30px;
-  box-shadow: 0 0 50px 10px rgba(95, 45, 237, 0.1);
+  box-shadow: 0 0 50px 10px rgba(var(--primaryColorRGB), 0.1);
   margin-bottom: 30px;
   transition: 0.3s;
   position: relative;
@@ -844,7 +1009,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  background: #5f2ded;
+  background: var(--primaryColor);
   color: #fff;
   border-radius: 50px;
   display: inline-flex;
@@ -901,7 +1066,7 @@ section {
   width: 1px;
   height: 10px;
   transition: 0.9s;
-  background-color: #5f2ded;
+  background-color: var(--primaryColor);
 }
 
 /* --------------------------------------------------------------
@@ -918,7 +1083,7 @@ section {
 .resume .resume-item {
   padding: 0 0 20px 20px;
   margin-top: -2px;
-  border-left: 2px solid #5f2ded;
+  border-left: 2px solid var(--primaryColor);
   position: relative;
 }
 
@@ -928,7 +1093,7 @@ section {
   font-weight: 600;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  color: #5f2ded;
+  color: var(--primaryColor);
   margin-bottom: 10px;
 }
 
@@ -962,7 +1127,7 @@ section {
   left: -9px;
   top: 0;
   background: #fff;
-  border: 2px solid #5f2ded;
+  border: 2px solid var(--primaryColor);
 }
 
 /* --------------------------------------------------------------
@@ -997,7 +1162,7 @@ section {
 
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
-  color: #5f2ded;
+  color: var(--primaryColor);
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -1146,14 +1311,14 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #5f2ded;
+  border: 1px solid var(--primaryColor);
 }
 
 .portfolio-details
   .portfolio-details-slider
   .swiper-pagination
   .swiper-pagination-bullet-active {
-  background-color: #5f2ded;
+  background-color: var(--primaryColor);
 }
 
 .portfolio-details .portfolio-info {
@@ -1523,11 +1688,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #5f2ded;
+  border: 1px solid var(--primaryColor);
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #5f2ded;
+  background-color: var(--primaryColor);
 }
 
 @media (min-width: 992px) {
@@ -1752,7 +1917,7 @@ section {
   /* -webkit-background-clip: text; */
   /* -webkit-text-fill-color: transparent; */
   /* background-image: linear-gradient( 179deg, rgb(95 45 237) 4%, rgb(6, 199, 242) 44%, rgb(95 45 237) 95% ); */
-  color: #5f2ded;
+  color: var(--primaryColor);
 }
 
 #footer p {
@@ -1769,7 +1934,7 @@ section {
 #footer .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: #5f2ded;
+  background: var(--primaryColor);
   color: #fff;
   line-height: 1;
   padding: 8px 0;
