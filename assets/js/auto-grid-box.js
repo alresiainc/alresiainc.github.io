@@ -1,11 +1,11 @@
 class AutoGridBox {
   constructor(selector, options = { header, fullScreenButton, pagination }) {
-    this.pluginName = "AutoGridBox";
-    this.pluginShortName = "AGB";
+    this.pluginName = "Auto Grid Box";
+    this.pluginShortName = "agb";
+    this.pluginUniqueName = "auto-grid-box";
     this.selector = selector;
-    this.layout = options?.data?.layout;
-    this.descriptionText = options?.descriptionText;
-    this.data = options?.data || { items: ["https://via.placeholder.com/400"] };
+    this.layout = options?.layout;
+    this.items = options?.items || ["https://via.placeholder.com/400"];
     this.description =
       options?.description ||
       function (element) {
@@ -41,7 +41,7 @@ class AutoGridBox {
   }
 
   createName(str) {
-    return `${this.pluginShortName.replace(/\s+/g, "-").toLowerCase()}-${str}`;
+    return `${this.pluginName.replace(/\s+/g, "-").toLowerCase()}-${str}`;
   }
   getWidth(col) {
     return (col / 12) * 100;
@@ -75,7 +75,6 @@ class AutoGridBox {
   }
 
   previewImage(element) {
-    console.log(element);
     this.closePreviewer();
 
     let pre = document.createElement("div");
@@ -279,14 +278,11 @@ class AutoGridBox {
   }
 
   previewNextImage(element, img) {
-    console.log(img);
-    console.log(element);
     let itemIndex = parseInt(element.getAttribute("data-item-index"));
     let container = element.closest(`.${this.createName("container")}`);
     let nextImage = container.querySelector(
       `img[data-item-index="${itemIndex + 1}"]`
     );
-    console.log(nextImage);
     if (nextImage) {
       this.previewImage(nextImage);
     } else {
@@ -296,14 +292,12 @@ class AutoGridBox {
   }
 
   previewPrevImage(element, img) {
-    console.log(img);
-    console.log(element);
     let itemIndex = parseInt(element.getAttribute("data-item-index"));
     let container = element.closest(`.${this.createName("container")}`);
     let prevImage = container.querySelector(
       `img[data-item-index="${itemIndex - 1}"]`
     );
-    console.log(prevImage);
+
     if (prevImage) {
       this.previewImage(prevImage);
     } else {
@@ -324,11 +318,12 @@ class AutoGridBox {
   }
 
   generateHTML(layout, startIndex = 0) {
-    let display;
     let showed = startIndex + 1;
     let itemIndex = startIndex;
-    let items = this.data.items;
+    let items = this.items;
+
     const cols = this.customSplit(layout);
+    let maxShow = cols.length <= this.maxShow ? cols.length : this.maxShow;
     let html;
 
     let row = document.createElement("div");
@@ -339,11 +334,6 @@ class AutoGridBox {
     row.style.height = "100%";
 
     cols.forEach((col) => {
-      if (showed <= this.maxShow) {
-        display = "";
-      } else {
-        display = "";
-      }
       if (col.includes("<")) {
         // Column contains nested rows
         let colNum = col.split("<")[0];
@@ -368,7 +358,6 @@ class AutoGridBox {
         colDiv.appendChild(subHtml.html);
         itemIndex = subHtml.itemIndex;
 
-        console.log(colDiv);
         row.appendChild(colDiv);
       } else {
         let colNum = col.split("-")[1];
@@ -399,7 +388,7 @@ class AutoGridBox {
         imgContainer.appendChild(img);
         img.addEventListener("click", () => this.previewImage(img, items));
 
-        if (itemIndex + 1 == this.maxShow && items.length - this.maxShow > 0) {
+        if (itemIndex + 1 == maxShow && items.length - maxShow > 0) {
           let images = document.createElement("div");
           images.className = `${this.createName("images")}`;
           images.src = `${items[itemIndex]}`;
@@ -414,7 +403,7 @@ class AutoGridBox {
           images.style.alignItems = "center";
           images.style.justifyContent = "center";
           images.innerHTML = `<span style=" border-color:white;color:white;">+${
-            items.length - this.maxShow
+            items.length - maxShow
           }</span>`;
           images.addEventListener("click", () => this.previewImage(img, items));
 
@@ -427,7 +416,7 @@ class AutoGridBox {
       }
     });
 
-    if (itemIndex == this.maxShow && items.length > itemIndex) {
+    if (itemIndex == maxShow && items.length > itemIndex) {
       for (let index = itemIndex; index < items.length; index++) {
         let colNum = "12";
 
@@ -463,8 +452,6 @@ class AutoGridBox {
       }
     }
 
-    // return html;
-    console.log(row);
     html = row;
     return { html, itemIndex: itemIndex };
   }
@@ -482,24 +469,41 @@ class AutoGridBox {
   };
 
   init() {
-    let items = this.data.items;
+    let items = this.items;
 
     // Get the number of items
+    // let maxShow = this.items.length <= this.maxShow ? this.items.length : this.maxShow;
+
     let numItems = parseInt(
       items.length > this.maxShow ? this.maxShow : items.length
     );
 
     // Get the layout options for the given number of items
+
+    // randomIndex =
+    //   randomIndex > this.items.length ? randomIndex : this.items.length;
     let layouts = this.defaultLayouts[numItems.toString()];
+
     let layout;
 
     // Check if layout options exist for the given number of items
-    if (this.layout) {
+    if (
+      this.layout &&
+      this.layout != "" &&
+      typeof this.layout == "string" &&
+      this.customSplit(this.layout).length <= items.length
+    ) {
+      if (!this.layout.includes("col-")) {
+        console.error("Invalid layout syntax");
+      }
+
       layout = this.layout;
     } else {
       if (layouts && layouts.length > 0) {
         // Pick a random layout from the options
+
         let randomIndex = Math.floor(Math.random() * layouts.length);
+
         layout = layouts[randomIndex];
       } else {
         layout = "col-12";
@@ -508,7 +512,6 @@ class AutoGridBox {
 
     let container = document.createElement("div");
     container.className = `${this.createName("container")}`;
-
     let generated = this.generateHTML(layout);
 
     container.appendChild(generated.html);

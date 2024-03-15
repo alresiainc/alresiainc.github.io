@@ -57,47 +57,47 @@
             color: #5f2ded;
         }
 
-        .slider-items .bxl-container {
+        .slider-items .auto-grid-box-container {
             max-height: 100%;
             height: 200px;
             overflow: hidden;
         }
 
-        .bxl-pre-content {
+        .auto-grid-box-pre-content {
             border-radius: 7px;
         }
 
-        .bxl-next-button,
-        .bxl-prev-button {
+        .auto-grid-box-next-button,
+        .auto-grid-box-prev-button {
             background-color: #5b33ec !important;
             color: #ffffff;
             font-weight: 400;
         }
 
-        .bxl-image-pagination-bullets {
+        .auto-grid-box-image-pagination-bullets {
             border: 1px solid rgb(91 51 236) !important;
             color: rgb(255, 255, 255) !important;
         }
 
-        .bxl-image-pagination-bullets.active {
+        .auto-grid-box-image-pagination-bullets.active {
             background-color: rgb(91 51 236) !important;
         }
 
-        .bxl-col :not(.bxl-col) {
+        .auto-grid-box-col :not(.auto-grid-box-col) {
             border-bottom: 1px solid transparent !important;
             border-right: 1px solid transparent !important;
         }
 
-        .bxl-img-container {
+        .auto-grid-box-img-container {
             overflow: hidden !important;
         }
 
-        .bxl-img-container img {
+        .auto-grid-box-img-container img {
             transition: 0.3s;
             max-height: 100% !important;
         }
 
-        .bxl-img-container img:hover {
+        .auto-grid-box-img-container img:hover {
             transform: scale(1.1);
         }
 
@@ -195,12 +195,12 @@
         .animate-content-wrap {
             display: flex;
             width: -moz-fit-content;
+            width: fit-content;
             white-space: nowrap;
             position: relative;
-            font-size: 30px;
-            line-height: 1;
-            font-weight: 500;
-            justify-content: center;
+            will-change: transform;
+            animation: marquee 60s linear 0s infinite normal;
+            animation-play-state: running;
         }
 
         @media (max-width: 991px) {
@@ -213,6 +213,14 @@
 
         .animate-content-wrap:hover {
             animation-play-state: paused;
+        }
+
+        .animate-content-single {
+            display: block;
+            width: 100%;
+            min-width: -moz-max-content;
+            min-width: max-content;
+            padding-inline: 16px;
         }
 
         .animate-content-wrap img {
@@ -235,8 +243,12 @@
                 transform: translateX(0);
             }
 
-            100% {
+            99% {
                 transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0%);
             }
         }
 
@@ -286,7 +298,6 @@
 
 <body>
     <!-- ======= Mobile nav toggle button ======= -->
-    <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
     <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex flex-column justify-content-center">
@@ -359,7 +370,7 @@
             </div>
 
             <!-- <div> -->
-            <form class="search-form" action="#">
+            <form class="search-form" id="search-form" action="#">
                 <div class="search-form-categories">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
@@ -380,14 +391,7 @@
                     <div class="categories-box">
                         <select class="wide select2">
                             <option data-display="Explore">Explore</option>
-                            <option value="1">WordPress</option>
-                            <option value="2">Shopify</option>
-                            <option value="3">Joomla</option>
-                            <option value="4">Opencart</option>
-                            <option value="5">Megento</option>
-                            <option value="6">Webflow</option>
-                            <option value="7">React</option>
-                            <option value="8">PrestaShop</option>
+                            <option value="1">All</option>
                         </select>
                     </div>
                 </div>
@@ -441,30 +445,54 @@
             <div class="container-fluid text-center">
                 <div class="animate-content-wrap">
                     <div class="d-flex align-items-center justify-content-center">
-
-                        <div class="">
-                            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/html-logo.png" class="img-fluid" alt="">
                         </div>
 
-                        <div class="">
-                            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/css-logo.png" class="img-fluid" alt="">
                         </div>
 
-                        <div class="">
-                            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/new-php-logo.png" class="img-fluid" alt="">
                         </div>
 
-                        <div class="">
-                            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/nodejs.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/laravel-logo.png" class="img-fluid" alt=""
+                                style="max-width: 140px !important;">
+                        </div>
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/codeIgniter-logo.png" class="img-fluid" alt=""
+                                style="max-width: 160px !important;">
+                        </div>
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/angolar-logo.png" class="img-fluid" alt=""
+                                style="max-width: 140px !important;">
                         </div>
 
-                        <div class="">
-                            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/react-logo.png" class="img-fluid" alt=""
+                                style="max-width: 120px !important;">
                         </div>
 
-                        <div class="">
-                            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/vuejs-logo.png" class="img-fluid" alt=""
+                                style="max-width: 100px !important;">
                         </div>
+
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/wordpress-logo.png" class="img-fluid" alt=""
+                                style="max-width: 180px !important;">
+                        </div>
+
+                        <div class="animate-content-single">
+                            <img src="assets/img/icons/jquery-logo.png" class="img-fluid" alt="">
+                        </div>
+
 
                     </div>
 
@@ -1081,72 +1109,48 @@
         let data = [
             {
                 items: [
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_20.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_19.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_7.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
+                    "./assets/img/clients/talentsapartments.com/1.png",
                 ],
-                title: "This is an example of portfolio detail",
-                description: "Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.",
+                title: "Talents Apartments Dashboard",
+                description: `Talents Apartments offers premium, safe student accommodation with a unique hospitality approach to service, for total peace of mind. Our two locations are conveniently located inside and outside of the University of Ibadan depending on your needs. Each Apartment consists between 4 to 6 fully furnished and self-contained apartments, each with a private bathroom and kitchen. Private rooms combined with communal studying, social and entertainment spaces, ensuring students enjoy total privacy within a vibrant student environment.`,
                 category: "Web Design",
-                client: "Web Design",
-                date: "27 March 2023",
-                url: null,
+                client: "Talents Apartment",
+                date: "June 2022",
+                url: 'https://talentsapartments.com/register',
+                layout: 'col-12:col-4:col-4:col-4',
 
             },
             {
                 items: [
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/about/tution.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_26.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_27.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_28.jpg",
+                    "./assets/img/clients/godoattorneys.com/1.png",
+                    "./assets/img/clients/godoattorneys.com/2.png",
+                    "./assets/img/clients/godoattorneys.com/3.png",
+                    "./assets/img/clients/godoattorneys.com/4.png",
+                    "./assets/img/clients/godoattorneys.com/5.png",
+                    "./assets/img/clients/godoattorneys.com/6.png",
+                    "./assets/img/clients/godoattorneys.com/7.png",
+                    "./assets/img/clients/godoattorneys.com/8.png",
+                    "./assets/img/clients/godoattorneys.com/9.png",
+                    "./assets/img/clients/godoattorneys.com/10.png",
+                    "./assets/img/clients/godoattorneys.com/11.png",
                 ],
-                title: "This is an example of portfolio detail",
-                description: "Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.",
+                title: "GODO Attorneys Website",
+                description: `GODO Attorneys is a first class Law firm set up with a vision to take the lead and blaze the trail in legal practice in Nigeria and beyond by offering prompt, efficient and highly qualitative legal services. The firm is apt and prime with experienced Lawyers in practice areas such as Litigation & Alternative Dispute Resolution; Debt Recovery and Insolvency practice,; Corporate & Commercial; Intellectual property; Information Technology, Medical Law; Mergers/Acquisitions; Share Capital Reconstruction; Cor porate Restructuring; Business Advisory; Taxation- both domestic & international commercial tax; Transportation (Shipping, Aviation, Rail etc); Energy, Power & Natural Resources; Real Estate; White Collar Crimes; Perfection of Security for Credit; Trust; Wills & Probate; Social Media Law, Artificial intelligence, Immigration, eCommerce, Privatization and public procurement; Data protection and privacy; Cyber security; International law, etc We have carved a niche for ourselves as a Litigation and Corporate Commercial Law firm.`,
                 category: "Web Design",
-                client: "Web Design",
-                date: "27 March 2023",
-                url: null,
-
+                client: "GODO Attorneys",
+                date: "10 October, 2023",
+                url: 'https://godoattorneys.com',
             },
             {
                 items: [
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_26.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_27.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_28.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_20.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_19.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_7.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/about/tution.jpg",
+                    "./assets/img/clients/affiliatemarketingaccelerator.com.ng/1.png",
                 ],
-                title: "This is an example of portfolio detail",
-                description: "Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.",
+                title: "Affiliate Marketing Accelerator",
+                description: "We built an online website (dashboard) Affiliate Marketing Accelerator. to manage courses, tutorials and users mangements. Feel free to checkout the site",
                 category: "Web Design",
                 client: "Web Design",
-                date: "27 March 2023",
-                url: null,
-
-            },
-            {
-                items: [
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_8.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/grid/grid_9.png",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/about/tution.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_26.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_27.jpg",
-                    "file:///C:/Users/Alresia/Downloads/Demo%20Site/Demo%20Site/html.themewin.com/edurock-preview/edurock/img/blog/blog_28.jpg",
-                ],
-                title: "This is an example of portfolio detail",
-                description: "Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.",
-                category: "Web Design",
-                client: "Web Design",
-                date: "27 March 2023",
-                url: "www.example.com",
+                date: "November 2023",
+                url: "https://affiliatemarketingaccelerator.com.ng/",
 
             },
         ];
@@ -1157,9 +1161,9 @@
             let items = item.items;
 
             const slidersItem = document.createElement("div");
-            slidersItem.className = "slider-items col-sm-6 col-lg-3";
+            slidersItem.className = "slider-items col-sm-6 col-lg-4";
             let box_layout = new AutoGridBox(slidersItem, {
-                data: item,
+                items: items,
                 description: function (element) {
                     let sample = `<div class="row portfolio-details">
                         <div class="col-sm-4">
@@ -1174,9 +1178,9 @@
                               </div>
                         </div>
                         <div class="col-sm-8">
-                            <div class="col-sm-8 portfolio-description">
+                            <div class="portfolio-description">
                                 <h2>${item.title}</h2>
-                                <p>
+                                <p style="text-align:justify;">
                                     ${item.description}
                                 </p>
                               </div>
@@ -1184,10 +1188,11 @@
                       </div>`;
                     element.innerHTML = sample;
                 },
+                layout: item.layout,
             });
             const sliderInfo = document.createElement("div");
             sliderInfo.className = "slider-info";
-            sliderInfo.innerHTML = `<h4><a href="javascript:;">${item.title}</a></h4>`;
+            sliderInfo.innerHTML = `<h4><a href="javascript:;" onClick="">${item.title}</a></h4>`;
             slidersItem.appendChild(sliderInfo);
             slidersContainer.appendChild(slidersItem);
 
@@ -1195,7 +1200,9 @@
 
         document.querySelector(".portfolio-preview").appendChild(slidersContainer);
 
-
+        document.querySelector('#search-form').addEventListener("click", (e) => {
+            e.preventDefault();
+        });
     </script>
 
 </body>

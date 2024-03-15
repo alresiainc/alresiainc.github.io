@@ -447,7 +447,7 @@ h6 {
 .search-form input:focus-visible {
   border: none;
   outline: var(--primaryColor) auto 0.5px;
-  box-shadow: 0 0 50px 3px rgb(43 0 166);
+  box-shadow: 0 0 50px 3px rgb(3 191 205);
   transition: 0.5s;
 }
 
